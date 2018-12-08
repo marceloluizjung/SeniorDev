@@ -1,0 +1,1669 @@
+{
+    "appName": "pedidos",
+    "domain": "varejo",
+    "name": "pedidos",
+    "version": "${version}",
+    "commands" : {
+        "helloWorld": {
+            "endpointType" : "command",
+            "kind": "query",
+            "idempotent": true,
+            "input" : {
+                "who" : {
+                    "type": "string",
+                    "optional": false,
+                    "multivalued": false,
+                    "readOnly": false
+                }
+            },
+            "output" : {
+                "helloWorldMessage" : {
+                    "type": "string",
+                    "optional": false,
+                    "multivalued": false,
+                    "readOnly": false
+                }
+            },
+            "extensionPoint" : false,
+            "visibility" : "PRIVATE"
+        },
+        "obterUrlUploadFoto": {
+            "endpointType" : "command",
+            "kind": "action",
+            "documentation": "Obt\u00E9m a URL para upload da foto",
+            "input" : {
+                "id" : {
+                    "type": "string",
+                    "optional": true,
+                    "multivalued": false,
+                    "readOnly": false
+                }
+            },
+            "output" : {
+                "id" : {
+                    "type": "string",
+                    "optional": false,
+                    "multivalued": false,
+                    "readOnly": false
+                },
+                "version" : {
+                    "type": "string",
+                    "optional": false,
+                    "multivalued": false,
+                    "readOnly": false
+                },
+                "url" : {
+                    "type": "string",
+                    "optional": false,
+                    "multivalued": false,
+                    "readOnly": false
+                }
+            },
+            "extensionPoint" : false,
+            "visibility" : "PRIVATE"
+        },
+        "gravarFoto": {
+            "endpointType" : "command",
+            "kind": "action",
+            "documentation": "Grava a foto que foi upada",
+            "input" : {
+                "id" : {
+                    "type": "string",
+                    "optional": false,
+                    "multivalued": false,
+                    "readOnly": false
+                },
+                "version" : {
+                    "type": "string",
+                    "optional": false,
+                    "multivalued": false,
+                    "readOnly": false
+                }
+            },
+            "output" : {
+                "result" : {
+                    "type": "fotoOperationResult",
+                    "optional": false,
+                    "multivalued": false,
+                    "readOnly": false
+                }
+            },
+            "extensionPoint" : false,
+            "visibility" : "PRIVATE"
+        },
+        "obterUrlDownloadFoto": {
+            "endpointType" : "command",
+            "kind": "action",
+            "documentation": "Obt\u00E9m a URL para download da foto",
+            "input" : {
+                "id" : {
+                    "type": "string",
+                    "optional": false,
+                    "multivalued": false,
+                    "readOnly": false
+                }
+            },
+            "output" : {
+                "url" : {
+                    "type": "string",
+                    "optional": false,
+                    "multivalued": false,
+                    "readOnly": false
+                }
+            },
+            "extensionPoint" : false,
+            "visibility" : "PRIVATE"
+        },
+        "getMetadata": {
+            "endpointType" : "command",
+            "kind": "query",
+            "documentation": "Default 'getMetadata' query. Every service must handle this command and return metadata in the format requested.",
+            "idempotent": true,
+            "input" : {
+                "metadataFormat" : {
+                    "type": "string",
+                    "optional": true,
+                    "multivalued": false,
+                    "readOnly": false
+                }
+            },
+            "output" : {
+                "metadata" : {
+                    "type": "string",
+                    "optional": false,
+                    "multivalued": false,
+                    "readOnly": false
+                }
+            },
+            "extensionPoint" : false,
+            "visibility" : "PRIVATE"
+        },
+        "odata": {
+            "endpointType" : "command",
+            "kind": "action",
+            "extensionPoint" : false,
+            "visibility" : "PRIVATE"
+        },
+        "importCliente": {
+            "endpointType" : "command",
+            "kind": "action",
+            "input" : {
+                "config" : {
+                    "type": "importConfig",
+                    "optional": false,
+                    "multivalued": false,
+                    "readOnly": false
+                }
+            },
+            "output" : {
+                "importJobId" : {
+                    "type": "string",
+                    "optional": false,
+                    "multivalued": false,
+                    "readOnly": false
+                }
+            },
+            "extensionPoint" : false,
+            "visibility" : "PUBLIC"
+        },
+        "exportCliente": {
+            "endpointType" : "command",
+            "kind": "query",
+            "idempotent": true,
+            "input" : {
+                "config" : {
+                    "type": "exportConfig",
+                    "optional": false,
+                    "multivalued": false,
+                    "readOnly": false
+                }
+            },
+            "output" : {
+                "exportJobId" : {
+                    "type": "string",
+                    "optional": false,
+                    "multivalued": false,
+                    "readOnly": false
+                }
+            },
+            "extensionPoint" : false,
+            "visibility" : "PUBLIC"
+        },
+        "importItem": {
+            "endpointType" : "command",
+            "kind": "action",
+            "input" : {
+                "config" : {
+                    "type": "importConfig",
+                    "optional": false,
+                    "multivalued": false,
+                    "readOnly": false
+                }
+            },
+            "output" : {
+                "importJobId" : {
+                    "type": "string",
+                    "optional": false,
+                    "multivalued": false,
+                    "readOnly": false
+                }
+            },
+            "extensionPoint" : false,
+            "visibility" : "PUBLIC"
+        },
+        "exportItem": {
+            "endpointType" : "command",
+            "kind": "query",
+            "idempotent": true,
+            "input" : {
+                "config" : {
+                    "type": "exportConfig",
+                    "optional": false,
+                    "multivalued": false,
+                    "readOnly": false
+                }
+            },
+            "output" : {
+                "exportJobId" : {
+                    "type": "string",
+                    "optional": false,
+                    "multivalued": false,
+                    "readOnly": false
+                }
+            },
+            "extensionPoint" : false,
+            "visibility" : "PUBLIC"
+        },
+        "importPedido": {
+            "endpointType" : "command",
+            "kind": "action",
+            "input" : {
+                "config" : {
+                    "type": "importConfig",
+                    "optional": false,
+                    "multivalued": false,
+                    "readOnly": false
+                }
+            },
+            "output" : {
+                "importJobId" : {
+                    "type": "string",
+                    "optional": false,
+                    "multivalued": false,
+                    "readOnly": false
+                }
+            },
+            "extensionPoint" : false,
+            "visibility" : "PUBLIC"
+        },
+        "exportPedido": {
+            "endpointType" : "command",
+            "kind": "query",
+            "idempotent": true,
+            "input" : {
+                "config" : {
+                    "type": "exportConfig",
+                    "optional": false,
+                    "multivalued": false,
+                    "readOnly": false
+                }
+            },
+            "output" : {
+                "exportJobId" : {
+                    "type": "string",
+                    "optional": false,
+                    "multivalued": false,
+                    "readOnly": false
+                }
+            },
+            "extensionPoint" : false,
+            "visibility" : "PUBLIC"
+        },
+        "listCliente": {
+            "endpointType" : "command",
+            "kind": "list",
+            "documentation": "The 'list' request primitive for the Cliente entity.",
+            "input" : {
+                "offset" : {
+                    "type": "integer",
+                    "optional": false,
+                    "multivalued": false,
+                    "readOnly": false
+                },
+                "size" : {
+                    "type": "integer",
+                    "optional": false,
+                    "multivalued": false,
+                    "readOnly": false
+                },
+                "orderBy" : {
+                    "type": "string",
+                    "optional": false,
+                    "multivalued": false,
+                    "readOnly": false
+                },
+                "filter" : {
+                    "type": "string",
+                    "optional": false,
+                    "multivalued": false,
+                    "readOnly": false
+                },
+                "displayFields" : {
+                    "type": "string",
+                    "optional": false,
+                    "multivalued": true,
+                    "readOnly": false
+                }
+            },
+            "output" : {
+                "contents" : {
+                    "type": "cliente",
+                    "optional": false,
+                    "multivalued": true,
+                    "readOnly": false
+                }
+            },
+            "extensionPoint" : false,
+            "visibility" : "PUBLIC"
+        },
+        "listItem": {
+            "endpointType" : "command",
+            "kind": "list",
+            "documentation": "The 'list' request primitive for the Item entity.",
+            "input" : {
+                "offset" : {
+                    "type": "integer",
+                    "optional": false,
+                    "multivalued": false,
+                    "readOnly": false
+                },
+                "size" : {
+                    "type": "integer",
+                    "optional": false,
+                    "multivalued": false,
+                    "readOnly": false
+                },
+                "orderBy" : {
+                    "type": "string",
+                    "optional": false,
+                    "multivalued": false,
+                    "readOnly": false
+                },
+                "filter" : {
+                    "type": "string",
+                    "optional": false,
+                    "multivalued": false,
+                    "readOnly": false
+                },
+                "displayFields" : {
+                    "type": "string",
+                    "optional": false,
+                    "multivalued": true,
+                    "readOnly": false
+                }
+            },
+            "output" : {
+                "contents" : {
+                    "type": "item",
+                    "optional": false,
+                    "multivalued": true,
+                    "readOnly": false
+                }
+            },
+            "extensionPoint" : false,
+            "visibility" : "PUBLIC"
+        },
+        "listPedido": {
+            "endpointType" : "command",
+            "kind": "list",
+            "documentation": "The 'list' request primitive for the Pedido entity.",
+            "input" : {
+                "offset" : {
+                    "type": "integer",
+                    "optional": false,
+                    "multivalued": false,
+                    "readOnly": false
+                },
+                "size" : {
+                    "type": "integer",
+                    "optional": false,
+                    "multivalued": false,
+                    "readOnly": false
+                },
+                "orderBy" : {
+                    "type": "string",
+                    "optional": false,
+                    "multivalued": false,
+                    "readOnly": false
+                },
+                "filter" : {
+                    "type": "string",
+                    "optional": false,
+                    "multivalued": false,
+                    "readOnly": false
+                },
+                "displayFields" : {
+                    "type": "string",
+                    "optional": false,
+                    "multivalued": true,
+                    "readOnly": false
+                }
+            },
+            "output" : {
+                "contents" : {
+                    "type": "pedido",
+                    "optional": false,
+                    "multivalued": true,
+                    "readOnly": false
+                }
+            },
+            "extensionPoint" : false,
+            "visibility" : "PUBLIC"
+        },
+        "getDependencies": {
+            "endpointType" : "command",
+            "kind": "query",
+            "documentation": "Returns a list with all dependencies from this service, along with their respective versions",
+            "idempotent": true,
+            "output" : {
+                "dependencies" : {
+                    "type": "dependency",
+                    "optional": false,
+                    "multivalued": true,
+                    "readOnly": false
+                }
+            },
+            "extensionPoint" : false,
+            "visibility" : "PUBLIC"
+        },
+        "createCliente": {
+            "endpointType" : "command",
+            "kind": "create",
+            "documentation": "The 'create' request primitive for the Cliente entity.",
+            "input" : "cliente",
+            "output" : "cliente",
+            "extensionPoint" : false,
+            "visibility" : "PUBLIC"
+        },
+        "createBulkCliente": {
+            "endpointType" : "command",
+            "kind": "createBulk",
+            "documentation": "The 'createBulk' request primitive for the Cliente entity.",
+            "input" : {
+                "entities" : {
+                    "type": "cliente",
+                    "optional": false,
+                    "multivalued": true,
+                    "readOnly": false
+                }
+            },
+            "output" : {
+            },
+            "extensionPoint" : false,
+            "visibility" : "PUBLIC"
+        },
+        "createMergeCliente": {
+            "endpointType" : "command",
+            "kind": "createMerge",
+            "documentation": "The 'createMerge' request primitive for the Cliente entity.",
+            "input" : "cliente",
+            "output" : "cliente",
+            "extensionPoint" : false,
+            "visibility" : "PUBLIC"
+        },
+        "retrieveCliente": {
+            "endpointType" : "command",
+            "kind": "retrieve",
+            "documentation": "The 'retrieve' request primitive for the Cliente entity.",
+            "input" : {
+                "id" : {
+                    "type": "string",
+                    "format": "uuid",
+                    "optional": false,
+                    "multivalued": false,
+                	"readOnly": true
+                }
+            },
+            "output" : "cliente",
+            "extensionPoint" : false,
+            "visibility" : "PUBLIC"
+        },
+        "updateCliente": {
+            "endpointType" : "command",
+            "kind": "update",
+            "documentation": "The 'update' request primitive for the Cliente entity.",
+            "input" : "cliente",
+            "output" : "cliente",
+            "extensionPoint" : false,
+            "visibility" : "PUBLIC"
+        },
+        "updateMergeCliente": {
+            "endpointType" : "command",
+            "kind": "updateMerge",
+            "documentation": "The 'updateMerge' request primitive for the Cliente entity.",
+            "input" : "cliente",
+            "output" : "cliente",
+            "extensionPoint" : false,
+            "visibility" : "PUBLIC"
+        },
+        "deleteCliente": {
+            "endpointType" : "command",
+            "kind": "delete",
+            "documentation": "The 'delete' request primitive for the Cliente entity.",
+            "input" : {
+                "id" : {
+                    "type": "string",
+                    "format": "uuid",
+                    "optional": false,
+                    "multivalued": false,
+                	"readOnly": true
+                }
+            },
+            "extensionPoint" : false,
+            "visibility" : "PUBLIC"
+        },
+        "createItem": {
+            "endpointType" : "command",
+            "kind": "create",
+            "documentation": "The 'create' request primitive for the Item entity.",
+            "input" : "item",
+            "output" : "item",
+            "extensionPoint" : false,
+            "visibility" : "PUBLIC"
+        },
+        "createBulkItem": {
+            "endpointType" : "command",
+            "kind": "createBulk",
+            "documentation": "The 'createBulk' request primitive for the Item entity.",
+            "input" : {
+                "entities" : {
+                    "type": "item",
+                    "optional": false,
+                    "multivalued": true,
+                    "readOnly": false
+                }
+            },
+            "output" : {
+            },
+            "extensionPoint" : false,
+            "visibility" : "PUBLIC"
+        },
+        "createMergeItem": {
+            "endpointType" : "command",
+            "kind": "createMerge",
+            "documentation": "The 'createMerge' request primitive for the Item entity.",
+            "input" : "item",
+            "output" : "item",
+            "extensionPoint" : false,
+            "visibility" : "PUBLIC"
+        },
+        "retrieveItem": {
+            "endpointType" : "command",
+            "kind": "retrieve",
+            "documentation": "The 'retrieve' request primitive for the Item entity.",
+            "input" : {
+                "id" : {
+                    "type": "string",
+                    "format": "uuid",
+                    "optional": false,
+                    "multivalued": false,
+                	"readOnly": true
+                }
+            },
+            "output" : "item",
+            "extensionPoint" : false,
+            "visibility" : "PUBLIC"
+        },
+        "updateItem": {
+            "endpointType" : "command",
+            "kind": "update",
+            "documentation": "The 'update' request primitive for the Item entity.",
+            "input" : "item",
+            "output" : "item",
+            "extensionPoint" : false,
+            "visibility" : "PUBLIC"
+        },
+        "updateMergeItem": {
+            "endpointType" : "command",
+            "kind": "updateMerge",
+            "documentation": "The 'updateMerge' request primitive for the Item entity.",
+            "input" : "item",
+            "output" : "item",
+            "extensionPoint" : false,
+            "visibility" : "PUBLIC"
+        },
+        "deleteItem": {
+            "endpointType" : "command",
+            "kind": "delete",
+            "documentation": "The 'delete' request primitive for the Item entity.",
+            "input" : {
+                "id" : {
+                    "type": "string",
+                    "format": "uuid",
+                    "optional": false,
+                    "multivalued": false,
+                	"readOnly": true
+                }
+            },
+            "extensionPoint" : false,
+            "visibility" : "PUBLIC"
+        },
+        "createPedido": {
+            "endpointType" : "command",
+            "kind": "create",
+            "documentation": "The 'create' request primitive for the Pedido entity.",
+            "input" : "pedido",
+            "output" : "pedido",
+            "extensionPoint" : false,
+            "visibility" : "PUBLIC"
+        },
+        "createBulkPedido": {
+            "endpointType" : "command",
+            "kind": "createBulk",
+            "documentation": "The 'createBulk' request primitive for the Pedido entity.",
+            "input" : {
+                "entities" : {
+                    "type": "pedido",
+                    "optional": false,
+                    "multivalued": true,
+                    "readOnly": false
+                }
+            },
+            "output" : {
+            },
+            "extensionPoint" : false,
+            "visibility" : "PUBLIC"
+        },
+        "createMergePedido": {
+            "endpointType" : "command",
+            "kind": "createMerge",
+            "documentation": "The 'createMerge' request primitive for the Pedido entity.",
+            "input" : "pedido",
+            "output" : "pedido",
+            "extensionPoint" : false,
+            "visibility" : "PUBLIC"
+        },
+        "retrievePedido": {
+            "endpointType" : "command",
+            "kind": "retrieve",
+            "documentation": "The 'retrieve' request primitive for the Pedido entity.",
+            "input" : {
+                "id" : {
+                    "type": "string",
+                    "format": "uuid",
+                    "optional": false,
+                    "multivalued": false,
+                	"readOnly": true
+                }
+            },
+            "output" : "pedido",
+            "extensionPoint" : false,
+            "visibility" : "PUBLIC"
+        },
+        "updatePedido": {
+            "endpointType" : "command",
+            "kind": "update",
+            "documentation": "The 'update' request primitive for the Pedido entity.",
+            "input" : "pedido",
+            "output" : "pedido",
+            "extensionPoint" : false,
+            "visibility" : "PUBLIC"
+        },
+        "updateMergePedido": {
+            "endpointType" : "command",
+            "kind": "updateMerge",
+            "documentation": "The 'updateMerge' request primitive for the Pedido entity.",
+            "input" : "pedido",
+            "output" : "pedido",
+            "extensionPoint" : false,
+            "visibility" : "PUBLIC"
+        },
+        "deletePedido": {
+            "endpointType" : "command",
+            "kind": "delete",
+            "documentation": "The 'delete' request primitive for the Pedido entity.",
+            "input" : {
+                "id" : {
+                    "type": "string",
+                    "format": "uuid",
+                    "optional": false,
+                    "multivalued": false,
+                	"readOnly": true
+                }
+            },
+            "extensionPoint" : false,
+            "visibility" : "PUBLIC"
+        }
+    },
+    "signals" : {
+    },
+    "events" : {
+        "serviceStarted": {
+            "endpointType" : "event",
+            "documentation" : "Default 'serviceStarted' event.",
+            "payload" : {
+                "domain" : {
+                    "type": "string",
+                    "optional": false,
+                    "multivalued": false,
+                    "readOnly": false
+                },
+                "service" : {
+                    "type": "string",
+                    "optional": false,
+                    "multivalued": false,
+                    "readOnly": false
+                }
+            },
+            "extensionPoint" : false,
+            "visibility" : "PRIVATE"
+        },
+        "notifyUserEvent": {
+            "endpointType" : "event",
+            "documentation" : "Default 'notifyUser' event.",
+            "payload" : "notifyUserEventPayload",
+            "extensionPoint" : false,
+            "visibility" : "PRIVATE"
+        },
+        "importClienteEvent": {
+            "endpointType" : "event",
+            "payload" : {
+                "eventpl" : {
+                    "type": "importEventStatus",
+                    "optional": false,
+                    "multivalued": false,
+                    "readOnly": false
+                }
+            },
+            "extensionPoint" : false,
+            "visibility" : "PUBLIC"
+        },
+        "exportClienteEvent": {
+            "endpointType" : "event",
+            "payload" : {
+                "eventpl" : {
+                    "type": "exportEventStatus",
+                    "optional": false,
+                    "multivalued": false,
+                    "readOnly": false
+                }
+            },
+            "extensionPoint" : false,
+            "visibility" : "PUBLIC"
+        },
+        "importItemEvent": {
+            "endpointType" : "event",
+            "payload" : {
+                "eventpl" : {
+                    "type": "importEventStatus",
+                    "optional": false,
+                    "multivalued": false,
+                    "readOnly": false
+                }
+            },
+            "extensionPoint" : false,
+            "visibility" : "PUBLIC"
+        },
+        "exportItemEvent": {
+            "endpointType" : "event",
+            "payload" : {
+                "eventpl" : {
+                    "type": "exportEventStatus",
+                    "optional": false,
+                    "multivalued": false,
+                    "readOnly": false
+                }
+            },
+            "extensionPoint" : false,
+            "visibility" : "PUBLIC"
+        },
+        "importPedidoEvent": {
+            "endpointType" : "event",
+            "payload" : {
+                "eventpl" : {
+                    "type": "importEventStatus",
+                    "optional": false,
+                    "multivalued": false,
+                    "readOnly": false
+                }
+            },
+            "extensionPoint" : false,
+            "visibility" : "PUBLIC"
+        },
+        "exportPedidoEvent": {
+            "endpointType" : "event",
+            "payload" : {
+                "eventpl" : {
+                    "type": "exportEventStatus",
+                    "optional": false,
+                    "multivalued": false,
+                    "readOnly": false
+                }
+            },
+            "extensionPoint" : false,
+            "visibility" : "PUBLIC"
+        }
+    },
+    "records": {
+        "cliente" : {
+            "id" : {
+                "type": "string",
+                "format": "uuid",
+                "optional": true,
+                "multivalued": false,
+            	"readOnly": true
+            },
+            "nome" : {
+                "type": "string",
+                "optional": false,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "dataNascimento" : {
+                "type": "date",
+                "optional": false,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "creditoHabilitado" : {
+                "type": "boolean",
+                "optional": true,
+                "multivalued": false,
+                "readOnly": false
+            ,
+            	"default": false
+            },
+            "cpf" : {
+                "type": "string",
+                "optional": false,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "idFoto" : {
+                "type": "string",
+                "optional": true,
+                "multivalued": false,
+                "readOnly": false
+            }
+        },
+        "item" : {
+            "id" : {
+                "type": "string",
+                "format": "uuid",
+                "optional": true,
+                "multivalued": false,
+            	"readOnly": true
+            },
+            "descricao" : {
+                "type": "string",
+                "optional": false,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "quantidade" : {
+                "type": "double",
+                "optional": false,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "valorUnitario" : {
+                "type": "double",
+                "optional": false,
+                "multivalued": false,
+                "readOnly": false
+            }
+        },
+        "pedido" : {
+            "id" : {
+                "type": "string",
+                "format": "uuid",
+                "optional": true,
+                "multivalued": false,
+            	"readOnly": true
+            },
+            "data" : {
+                "type": "date",
+                "optional": false,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "obsservacoes" : {
+                "type": "string",
+                "optional": true,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "cliente" : {
+                "type": "cliente",
+                "optional": false,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "itens" : {
+                "type": "item",
+                "optional": false,
+                "multivalued": true,
+                "readOnly": false
+            }
+        },
+        "notifyUserEventPayload" : {
+            "notificationOrigin" : {
+                "type": "string",
+                "optional": true,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "notificationKind" : {
+                "type": "userNotificationKind",
+                "optional": false,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "notificationPriority" : {
+                "type": "userNotificationPriority",
+                "optional": false,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "notificationSubject" : {
+                "type": "string",
+                "optional": false,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "notificationContent" : {
+                "type": "string",
+                "optional": false,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "sourceDomain" : {
+                "type": "string",
+                "optional": false,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "sourceService" : {
+                "type": "string",
+                "optional": false,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "destinationUser" : {
+                "type": "string",
+                "optional": false,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "link" : {
+                "type": "string",
+                "optional": true,
+                "multivalued": false,
+                "readOnly": false
+            }
+        },
+        "emailNotifyUserEventPayload" : {
+            "notificationOrigin" : {
+                "type": "string",
+                "optional": true,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "notificationKind" : {
+                "type": "userNotificationKind",
+                "optional": false,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "notificationPriority" : {
+                "type": "userNotificationPriority",
+                "optional": false,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "notificationSubject" : {
+                "type": "string",
+                "optional": false,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "notificationContent" : {
+                "type": "string",
+                "optional": false,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "sourceDomain" : {
+                "type": "string",
+                "optional": false,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "sourceService" : {
+                "type": "string",
+                "optional": false,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "destinationUser" : {
+                "type": "string",
+                "optional": false,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "link" : {
+                "type": "string",
+                "optional": true,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "from" : {
+                "type": "string",
+                "optional": false,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "sendTo" : {
+                "type": "string",
+                "optional": true,
+                "multivalued": true,
+                "readOnly": false
+            },
+            "format" : {
+                "type": "eventEmailFormat",
+                "optional": true,
+                "multivalued": false,
+                "readOnly": false
+            }
+        },
+        "pushNotifyUserEventPayload" : {
+            "notificationOrigin" : {
+                "type": "string",
+                "optional": true,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "notificationKind" : {
+                "type": "userNotificationKind",
+                "optional": false,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "notificationPriority" : {
+                "type": "userNotificationPriority",
+                "optional": false,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "notificationSubject" : {
+                "type": "string",
+                "optional": false,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "notificationContent" : {
+                "type": "string",
+                "optional": false,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "sourceDomain" : {
+                "type": "string",
+                "optional": false,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "sourceService" : {
+                "type": "string",
+                "optional": false,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "destinationUser" : {
+                "type": "string",
+                "optional": false,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "link" : {
+                "type": "string",
+                "optional": true,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "applicationId" : {
+                "type": "string",
+                "optional": false,
+                "multivalued": false,
+                "readOnly": false
+            }
+        },
+        "blobReference" : {
+            "domainName" : {
+                "type": "string",
+                "optional": true,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "serviceName" : {
+                "type": "string",
+                "optional": true,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "targetObjectId" : {
+                "type": "string",
+                "optional": false,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "targetCopyId" : {
+                "type": "string",
+                "optional": true,
+                "multivalued": false,
+                "readOnly": false
+            }
+        },
+        "basicErrorPayload" : {
+            "message" : {
+                "type": "string",
+                "optional": true,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "errorCode" : {
+                "type": "string",
+                "optional": true,
+                "multivalued": false,
+                "readOnly": false
+            }
+        },
+        "importError" : {
+            "errorType" : {
+                "type": "errorType",
+                "optional": false,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "lineNumber" : {
+                "type": "integer",
+                "optional": false,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "bean" : {
+                "type": "string",
+                "optional": false,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "message" : {
+                "type": "string",
+                "optional": false,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "exceptionClass" : {
+                "type": "string",
+                "optional": false,
+                "multivalued": false,
+                "readOnly": false
+            }
+        },
+        "fielddto" : {
+            "id" : {
+                "type": "integer",
+                "optional": false,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "name" : {
+                "type": "string",
+                "optional": false,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "fieldType" : {
+                "type": "fieldType",
+                "optional": false,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "start" : {
+                "type": "integer",
+                "optional": true,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "size" : {
+                "type": "integer",
+                "optional": true,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "maskPattern" : {
+                "type": "string",
+                "optional": true,
+                "multivalued": false,
+                "readOnly": false
+            }
+        },
+        "hookdto" : {
+            "hookFunction" : {
+                "type": "hookFunction",
+                "optional": false,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "script" : {
+                "type": "string",
+                "optional": false,
+                "multivalued": false,
+                "readOnly": false
+            }
+        },
+        "layoutdto" : {
+            "id" : {
+                "type": "integer",
+                "optional": false,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "description" : {
+                "type": "string",
+                "optional": false,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "fileFormat" : {
+                "type": "fileFormat",
+                "optional": false,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "errorStrategy" : {
+                "type": "errorStrategy",
+                "optional": false,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "delimiter" : {
+                "type": "string",
+                "optional": true,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "skipLines" : {
+                "type": "integer",
+                "optional": false,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "fields" : {
+                "type": "fielddto",
+                "optional": false,
+                "multivalued": true,
+                "readOnly": false
+            },
+            "hooks" : {
+                "type": "hookdto",
+                "optional": true,
+                "multivalued": true,
+                "readOnly": false
+            }
+        },
+        "importReport" : {
+            "id" : {
+                "type": "string",
+                "optional": false,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "startTime" : {
+                "type": "dateTime",
+                "optional": false,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "endTime" : {
+                "type": "dateTime",
+                "optional": false,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "uri" : {
+                "type": "string",
+                "optional": false,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "beanClass" : {
+                "type": "string",
+                "optional": false,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "serviceClass" : {
+                "type": "string",
+                "optional": false,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "layout" : {
+                "type": "layoutdto",
+                "optional": false,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "sucessCount" : {
+                "type": "integer",
+                "optional": false,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "errorsCount" : {
+                "type": "integer",
+                "optional": false,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "filteredCount" : {
+                "type": "integer",
+                "optional": false,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "skippedCount" : {
+                "type": "integer",
+                "optional": false,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "importErrors" : {
+                "type": "importError",
+                "optional": true,
+                "multivalued": true,
+                "readOnly": false
+            }
+        },
+        "exportEventStatus" : {
+            "importerId" : {
+                "type": "string",
+                "optional": false,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "eventType" : {
+                "type": "eventType",
+                "optional": false,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "recordCount" : {
+                "type": "integer",
+                "optional": false,
+                "multivalued": false,
+                "readOnly": false
+            }
+        },
+        "importEventStatus" : {
+            "importerId" : {
+                "type": "string",
+                "optional": false,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "eventType" : {
+                "type": "eventType",
+                "optional": false,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "status" : {
+                "type": "status",
+                "optional": false,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "errorMessage" : {
+                "type": "string",
+                "optional": true,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "recordCount" : {
+                "type": "integer",
+                "optional": false,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "importReport" : {
+                "type": "importReport",
+                "optional": true,
+                "multivalued": false,
+                "readOnly": false
+            }
+        },
+        "exportConfig" : {
+            "uri" : {
+                "type": "string",
+                "optional": false,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "layout" : {
+                "type": "layoutdto",
+                "optional": false,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "async" : {
+                "type": "boolean",
+                "optional": false,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "errorStrategy" : {
+                "type": "string",
+                "optional": false,
+                "multivalued": false,
+                "readOnly": false
+            }
+        },
+        "importConfig" : {
+            "uri" : {
+                "type": "string",
+                "optional": false,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "layout" : {
+                "type": "layoutdto",
+                "optional": false,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "async" : {
+                "type": "boolean",
+                "optional": false,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "batchSize" : {
+                "type": "integer",
+                "optional": false,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "errorStrategy" : {
+                "type": "errorStrategy",
+                "optional": false,
+                "multivalued": false,
+                "readOnly": false
+            }
+        },
+        "dependency" : {
+            "domain" : {
+                "type": "string",
+                "optional": false,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "service" : {
+                "type": "string",
+                "optional": false,
+                "multivalued": false,
+                "readOnly": false
+            },
+            "version" : {
+                "type": "string",
+                "optional": false,
+                "multivalued": false,
+                "readOnly": false
+            }
+        }
+    },
+    "enumerations": {
+        "fotoOperationResult" : [ 
+            "SUCCESS",
+            "ERROR"
+        ],
+        "userNotificationKind" : [ 
+            "Operational",
+            "Management",
+            "News"
+        ],
+        "userNotificationPriority" : [ 
+            "Error",
+            "Alert",
+            "None"
+        ],
+        "eventEmailFormat" : [ 
+            "HTML",
+            "PLAIN_TEXT"
+        ],
+        "fieldType" : [ 
+            "BINARY",
+            "BOOLEAN",
+            "DATE",
+            "DATETIME",
+            "DOUBLE",
+            "ENUM",
+            "INTEGER",
+            "MONEY",
+            "STRING",
+            "TIME"
+        ],
+        "fileFormat" : [ 
+            "CSV",
+            "FLAT",
+            "JSON",
+            "XML"
+        ],
+        "hookFunction" : [ 
+            "BEFORE_PARSE",
+            "BEFORE_CONVERSION",
+            "ON_ERROR",
+            "VALIDATE"
+        ],
+        "eventType" : [ 
+            "CHUNK",
+            "DOWNLOAD",
+            "ERROR",
+            "FINISH",
+            "START"
+        ],
+        "errorStrategy" : [ 
+            "CALL_SCRIPT",
+            "IGNORE",
+            "STOP"
+        ],
+        "status" : [ 
+            "DONE",
+            "DONE_WITH_ERRORS",
+            "DOWNLOADING",
+            "ERROR",
+            "NOT_STARTED",
+            "RUNNING"
+        ],
+        "errorType" : [ 
+            "CONVERT_ERROR",
+            "SERVICE_ERROR"
+        ]
+    },
+    "entities" : {
+        "cliente" : {
+            "id": "id",
+            "customizable": true,
+            "slots": { 
+                "id" : {
+                    "type": "string",
+                    "format": "uuid",
+                    "optional": true,
+                    "multivalued": false,
+                	"readOnly": true
+                },
+                "nome" : {
+                    "type": "string",
+                    "optional": false,
+                    "multivalued": false,
+                    "readOnly": false
+                },
+                "dataNascimento" : {
+                    "type": "date",
+                    "optional": false,
+                    "multivalued": false,
+                    "readOnly": false
+                },
+                "creditoHabilitado" : {
+                    "type": "boolean",
+                    "optional": true,
+                    "multivalued": false,
+                    "readOnly": false
+                ,
+                	"default": false
+                },
+                "cpf" : {
+                    "type": "string",
+                    "optional": false,
+                    "multivalued": false,
+                    "readOnly": false
+                },
+                "idFoto" : {
+                    "type": "string",
+                    "optional": true,
+                    "multivalued": false,
+                    "readOnly": false
+                }
+            }    
+        },
+        "item" : {
+            "id": "id",
+            "customizable": true,
+            "slots": { 
+                "id" : {
+                    "type": "string",
+                    "format": "uuid",
+                    "optional": true,
+                    "multivalued": false,
+                	"readOnly": true
+                },
+                "descricao" : {
+                    "type": "string",
+                    "optional": false,
+                    "multivalued": false,
+                    "readOnly": false
+                },
+                "quantidade" : {
+                    "type": "double",
+                    "optional": false,
+                    "multivalued": false,
+                    "readOnly": false
+                },
+                "valorUnitario" : {
+                    "type": "double",
+                    "optional": false,
+                    "multivalued": false,
+                    "readOnly": false
+                }
+            }    
+        },
+        "pedido" : {
+            "id": "id",
+            "customizable": true,
+            "slots": { 
+                "id" : {
+                    "type": "string",
+                    "format": "uuid",
+                    "optional": true,
+                    "multivalued": false,
+                	"readOnly": true
+                },
+                "data" : {
+                    "type": "date",
+                    "optional": false,
+                    "multivalued": false,
+                    "readOnly": false
+                },
+                "obsservacoes" : {
+                    "type": "string",
+                    "optional": true,
+                    "multivalued": false,
+                    "readOnly": false
+                },
+                "cliente" : {
+                    "type": "cliente",
+                    "optional": false,
+                    "multivalued": false,
+                    "readOnly": false
+                },
+                "itens" : {
+                    "type": "item",
+                    "optional": false,
+                    "multivalued": true,
+                    "readOnly": false
+                }
+            }    
+        }
+    }
+}

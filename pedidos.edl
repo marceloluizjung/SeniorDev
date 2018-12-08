@@ -1,0 +1,16 @@
+domain varejo
+
+service pedidos {
+	entities {
+		entity pedido {
+			relationships{
+                OneToMany(itens){
+                    type: aggregation
+                }
+                ManyToOne(cliente){
+                    type: aggregation
+                }
+            }
+        }
+	}   
+}

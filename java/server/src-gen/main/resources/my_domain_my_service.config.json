@@ -1,0 +1,25 @@
+{
+	"domain": "my_domain",
+	"service": "my_service",
+	"version": "0.0.1",
+	"properties": [
+	{
+		"key": "only.example",
+		"master": false,
+		"scope": "service",
+		"level": "system",
+		"type": "string",
+		"label": "Change to the desired label",
+		"comment": "Change to the desired comment",
+		"defaultValue": "empty",
+		"minValue": null,
+		"maxValue": null,
+		"required": false,
+		"regEx": "[a-zA-Z0-9_]*",
+		"hashTags": ["example one", "sample key"],
+		"forceUpdateValue": false,
+		"actionRead": "PermissionForRead",
+		"actionWrite": "PermissionForWrite"
+	}
+	]
+}

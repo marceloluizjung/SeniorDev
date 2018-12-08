@@ -1,0 +1,5 @@
+<!-- GENERATED ENTITIES: 2018-12-08 11:17:27:734 -->
+<class>br.com.senior.varejo.pedidos.ClienteEntity</class>
+<class>br.com.senior.varejo.pedidos.ItemEntity</class>
+<class>br.com.senior.varejo.pedidos.PedidoEntity</class>
+<class>br.com.senior.varejo.pedidos.Pedido_ItensEntity</class>

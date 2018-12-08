@@ -1,0 +1,353 @@
+{
+	"version": "0.1.0.0",
+	"edlVersion": "11.2.0",
+	"app": "pedidos",
+	"domain": "varejo",
+	"service": "pedidos",
+	"enumType": "string",
+	"enumerations": {
+	},
+	"entities": {
+		"cliente": {
+			"id": "id",
+			"name": "cliente",
+			"customizable": true,
+			"slots": {
+				"id": {
+					"name": "id",
+					"type": "string",
+					"format": "uuid",
+					"optional": true,
+					"hidden": false,
+					"multivalued": false,
+					"readOnly": true
+				},
+				"nome": {
+					"name": "nome",
+					"type": "string",
+					"optional": false,
+					"hidden": false,
+					"multivalued": false,
+					"readOnly": false
+				},
+				"dataNascimento": {
+					"name": "dataNascimento",
+					"type": "date",
+					"optional": false,
+					"hidden": false,
+					"multivalued": false,
+					"readOnly": false
+				},
+				"creditoHabilitado": {
+					"name": "creditoHabilitado",
+					"type": "boolean",
+					"optional": true,
+					"hidden": false,
+					"multivalued": false,
+					"readOnly": false,
+					"default": false
+				},
+				"cpf": {
+					"name": "cpf",
+					"type": "string",
+					"optional": false,
+					"hidden": false,
+					"multivalued": false,
+					"readOnly": false
+				},
+				"idFoto": {
+					"name": "idFoto",
+					"type": "string",
+					"optional": true,
+					"hidden": false,
+					"multivalued": false,
+					"readOnly": false
+				}
+			},
+			"lookup": {
+				"searchFields": [
+					"id",
+					"nome",
+					"dataNascimento",
+					"creditoHabilitado",
+					"cpf",
+					"idFoto"
+				],
+				"displayFields": [
+					"id",
+					"nome",
+					"dataNascimento",
+					"creditoHabilitado",
+					"cpf",
+					"idFoto"
+				]
+			},
+			"advancedSearch": {
+				"searchFields": [
+					"id",
+					"nome",
+					"dataNascimento",
+					"creditoHabilitado",
+					"cpf",
+					"idFoto"
+				],
+				"displayFields": [
+					"id",
+					"nome",
+					"dataNascimento",
+					"creditoHabilitado",
+					"cpf",
+					"idFoto"
+				]
+			}
+		},
+		"item": {
+			"id": "id",
+			"name": "item",
+			"customizable": true,
+			"slots": {
+				"id": {
+					"name": "id",
+					"type": "string",
+					"format": "uuid",
+					"optional": true,
+					"hidden": false,
+					"multivalued": false,
+					"readOnly": true
+				},
+				"descricao": {
+					"name": "descricao",
+					"type": "string",
+					"optional": false,
+					"hidden": false,
+					"multivalued": false,
+					"readOnly": false
+				},
+				"quantidade": {
+					"name": "quantidade",
+					"type": "double",
+					"optional": false,
+					"hidden": false,
+					"multivalued": false,
+					"readOnly": false
+				},
+				"valorUnitario": {
+					"name": "valorUnitario",
+					"type": "double",
+					"optional": false,
+					"hidden": false,
+					"multivalued": false,
+					"readOnly": false
+				}
+			},
+			"lookup": {
+				"searchFields": [
+					"id",
+					"descricao",
+					"quantidade",
+					"valorUnitario"
+				],
+				"displayFields": [
+					"id",
+					"descricao",
+					"quantidade",
+					"valorUnitario"
+				]
+			},
+			"advancedSearch": {
+				"searchFields": [
+					"id",
+					"descricao",
+					"quantidade",
+					"valorUnitario"
+				],
+				"displayFields": [
+					"id",
+					"descricao",
+					"quantidade",
+					"valorUnitario"
+				]
+			}
+		},
+		"pedido": {
+			"id": "id",
+			"name": "pedido",
+			"customizable": true,
+			"slots": {
+				"id": {
+					"name": "id",
+					"type": "string",
+					"format": "uuid",
+					"optional": true,
+					"hidden": false,
+					"multivalued": false,
+					"readOnly": true
+				},
+				"data": {
+					"name": "data",
+					"type": "date",
+					"optional": false,
+					"hidden": false,
+					"multivalued": false,
+					"readOnly": false
+				},
+				"obsservacoes": {
+					"name": "obsservacoes",
+					"type": "string",
+					"optional": true,
+					"hidden": false,
+					"multivalued": false,
+					"readOnly": false
+				},
+				"cliente": {
+					"name": "cliente",
+					"type": "cliente",
+					"optional": false,
+					"hidden": false,
+					"multivalued": false,
+					"readOnly": false
+				},
+				"itens": {
+					"name": "itens",
+					"type": "item",
+					"optional": false,
+					"hidden": false,
+					"multivalued": true,
+					"readOnly": false
+				}
+			},
+			"lookup": {
+				"searchFields": [
+					"id",
+					"data",
+					"obsservacoes"
+				],
+				"displayFields": [
+					"id",
+					"data",
+					"obsservacoes"
+				]
+			},
+			"advancedSearch": {
+				"searchFields": [
+					"id",
+					"data",
+					"obsservacoes"
+				],
+				"displayFields": [
+					"id",
+					"data",
+					"obsservacoes"
+				]
+			},
+			"relationships": {
+				"item": [
+					{
+						"type": "aggregation",
+						"attribute": "itens",
+						"ownerEntity": "pedido",
+						"entityName": "item",
+						"optional": false,
+						"filterDependent": false,
+						"multivalued": true,
+						"lookup": {
+							"searchFields": [
+								"id",
+								"descricao",
+								"quantidade",
+								"valorUnitario"
+							],
+							"displayFields": [
+								"id",
+								"descricao",
+								"quantidade",
+								"valorUnitario"
+							]
+						},
+						"advancedSearch": {
+							"searchFields": [
+								"id",
+								"descricao",
+								"quantidade",
+								"valorUnitario"
+							],
+							"displayFields": [
+								"id",
+								"descricao",
+								"quantidade",
+								"valorUnitario"
+							]
+						}
+					}
+				]
+				,"cliente": [
+					{
+						"type": "aggregation",
+						"attribute": "cliente",
+						"ownerEntity": "pedido",
+						"entityName": "cliente",
+						"optional": false,
+						"filterDependent": false,
+						"multivalued": false,
+						"lookup": {
+							"searchFields": [
+								"id",
+								"nome",
+								"dataNascimento",
+								"creditoHabilitado",
+								"cpf",
+								"idFoto"
+							],
+							"displayFields": [
+								"id",
+								"nome",
+								"dataNascimento",
+								"creditoHabilitado",
+								"cpf",
+								"idFoto"
+							]
+						},
+						"advancedSearch": {
+							"searchFields": [
+								"id",
+								"nome",
+								"dataNascimento",
+								"creditoHabilitado",
+								"cpf",
+								"idFoto"
+							],
+							"displayFields": [
+								"id",
+								"nome",
+								"dataNascimento",
+								"creditoHabilitado",
+								"cpf",
+								"idFoto"
+							]
+						}
+					}
+				]
+			}
+		}
+	},
+	"translations": {
+		"varejo.pedidos.cliente": "Entidade que representa o cliente",
+		"varejo.pedidos.cliente_id": "Chave primaria",
+		"varejo.pedidos.cliente_nome": "Nome do cliente",
+		"varejo.pedidos.cliente_data_nascimento": "Data de nascimento",
+		"varejo.pedidos.cliente_credito_habilitado": "Tem credito habilitado",
+		"varejo.pedidos.cliente_cpf": "CPF do cliente",
+		"varejo.pedidos.cliente_id_foto": "id da foto",
+		"varejo.pedidos.item": "Item do pedido",
+		"varejo.pedidos.item_id": "Chave primária",
+		"varejo.pedidos.item_descricao": "descrição",
+		"varejo.pedidos.item_quantidade": "quantidade",
+		"varejo.pedidos.item_valor_unitario": "valor unitário",
+		"varejo.pedidos.pedido": "Pedido",
+		"varejo.pedidos.pedido_id": "Chave primaria",
+		"varejo.pedidos.pedido_data": "Data do pedido",
+		"varejo.pedidos.pedido_obsservacoes": "Observações do pedido",
+		"varejo.pedidos.pedido_cliente": "Cliente do pedido",
+		"varejo.pedidos.pedido_itens": "Itens do pedido"
+	}
+}
